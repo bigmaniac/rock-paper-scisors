@@ -20,22 +20,26 @@ function humanChoice() {
 }
 
 function playRound (humanChoiceResult, computerChoiceResult) {
-    console.log(`Your choice: ${humanChoiceResult}.`);
-    console.log(`Computer choice: ${computerChoiceResult}.`);
+    let yourChoiceMessage = null;
+    let computerChoiceMessage = null;
+    let winMessage = null;
+    yourChoiceMessage = (`Your choice: ${humanChoiceResult}.`);
+    computerChoiceMessage = (`Computer choice: ${computerChoiceResult}.`);
     if (humanChoiceResult === "rock" && computerChoiceResult === "scissors" ||
         humanChoiceResult === "paper" && computerChoiceResult === "rock" ||
         humanChoiceResult === "scissors" && computerChoiceResult === "paper") {
             humanScore++;
-            console.log(`${humanChoiceResult.substring(0, 1).toUpperCase() + humanChoiceResult.substring(1)} beats ${computerChoiceResult}. You won the round.`);
-    } else if (computerChoiceResult === "rock" && humanChoiceResult === "scissors" ||
-        computerChoiceResult === "paper" && humanChoiceResult === "rock" ||
-        computerChoiceResult === "scissors" && humanChoiceResult === "paper") {
+            winMessage = `${humanChoiceResult.substring(0, 1).toUpperCase() + humanChoiceResult.substring(1)} beats ${computerChoiceResult}. You won the round.`;
+    } else if (humanChoiceResult === "rock" && computerChoiceResult === "paper" ||
+        humanChoiceResult === "paper" && computerChoiceResult === "scissors" ||
+        humanChoiceResult === "scissors" && computerChoiceResult === "rock") {
             computerScore++;
-            console.log(`${computerChoiceResult.substring(0, 1).toUpperCase() + computerChoiceResult.substring(1)} beats ${computerChoiceResult}. You loose the round.`);
+            winMessage = `${computerChoiceResult.substring(0, 1).toUpperCase() + computerChoiceResult.substring(1)} beats ${humanChoiceResult}. You loose the round.`;
     } else {
-        console.log(`${computerChoiceResult.substring(0, 1).toUpperCase() + computerChoiceResult.substring(1)} is equal to ${computerChoiceResult}. It's a draw round.`);
+        winMessage = `${computerChoiceResult.substring(0, 1).toUpperCase() + computerChoiceResult.substring(1)} is equal to ${humanChoiceResult}. It's a draw round.`;
     }
-    console.log(`Current score: You ${humanScore} | Computer: ${computerScore}`);
+    alert(`${yourChoiceMessage} ${computerChoiceMessage} ${winMessage}`);
+    alert(`Current score: You ${humanScore} | Computer: ${computerScore}`);
 }
 
 function playGame(num) {
@@ -49,9 +53,9 @@ function playGame(num) {
 playGame(5);
 
 if (humanScore > computerScore) {
-    console.log(`You won the game.`);
+    alert(`Your score is ${humanScore}. Computer score is ${computerScore}. You won the game.`);
 } else if (humanScore < computerScore) {
-    console.log(`You lost the game.`)
+    alert(`Your score is ${humanScore}. Computer score is ${computerScore}. You lost the game.`)
 } else {
-    console.log(`It's a draw.`)
+    alert(`Your score is ${humanScore}. Computer score is ${computerScore}. It's a draw.`)
 }
